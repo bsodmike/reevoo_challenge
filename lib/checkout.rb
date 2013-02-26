@@ -55,6 +55,10 @@ class Checkout
           scan_multiples[item_code].size.times do
             @basket << {item: item_code.to_s, op: "CR", amount: (@items.find(item_code)[:price] * (discount/100.0)).floor}
           end
+        elsif rule[:apply_multiple] == true
+          (scan_multiples[item_code].size / count).times do
+            @basket << {item: item_code.to_s, op: "CR", amount: (@items.find(item_code)[:price] * (discount/100.0)).floor}
+          end
         else
           @basket << {item: item_code.to_s, op: "CR", amount: (@items.find(item_code)[:price] * (discount/100.0)).floor}
         end

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Checkout do
   before(:all) do
-    @rules = Rule.new [{:item => 'fr1', :count => 2, :discount => 100}]
+    @rules = Rule.new [{:item => 'fr1', :count => 2, :discount => 100, :apply_multiple => true}]
     @rules.add_rule({:item => 'sr1', :count => 3, :discount => 10, :apply_each => true})
 
     @items = Product.new({fr1: {name: "Fruit tea", price: 311}})
@@ -57,6 +57,17 @@ describe Checkout do
       co.scan(:sr1)
       co.scan(:cf1)
       co.total.should == 19.34
+    end
+  end
+
+  context "when purchasing four fruit teas" do
+    it "should discount two fruit teas" do
+      co = Checkout.new(@rules, @items)
+      co.scan(:fr1)
+      co.scan(:fr1)
+      co.scan(:fr1)
+      co.scan(:fr1)
+      co.total.should == 6.22
     end
   end
 
