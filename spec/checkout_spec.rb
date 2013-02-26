@@ -29,7 +29,7 @@ describe Checkout do
   end
 
   context "when purchasing three Strawberries, Fruit tea, and Coffee" do
-    it "should" do
+    it "should bulk discount the Strawberries" do
       co = Checkout.new(@rules, @items)
       co.scan(:sr1)
       co.scan(:sr1)
@@ -39,7 +39,7 @@ describe Checkout do
     end
   end
 
-  it "should bulk discount the Strawberreis and second Fruit tea" do
+  it "should bulk discount the Strawberries and second Fruit tea" do
     co = Checkout.new(@rules, @items)
     co.scan(:fr1)
     co.scan(:sr1)
