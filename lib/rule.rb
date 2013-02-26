@@ -1,5 +1,4 @@
 class Rule
-  attr_accessor :rules
   def initialize(rules = [])
     @rules = rules
   end
@@ -12,7 +11,6 @@ class Rule
   def all
     @rules
   end
-
 end
 
 class RuleFormatError < StandardError; end
