@@ -1,3 +1,3 @@
-require_relative '../product'
-require_relative '../rule'
-require_relative '../checkout'
+require_relative '../lib/product'
+require_relative '../lib/rule'
+require_relative '../lib/checkout'
