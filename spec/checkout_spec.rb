@@ -50,13 +50,14 @@ describe Checkout do
     co.total.should == 21.11
   end
 
-
-  it "should not apply any discounts" do
-    co = Checkout.new(@rules, @items)
-    co.scan(:fr1)
-    co.scan(:sr1)
-    co.scan(:cf1)
-    co.total.should == 19.34
+  context "with no duplicate product meeting any rule criteria" do
+    it "should not apply any discounts" do
+      co = Checkout.new(@rules, @items)
+      co.scan(:fr1)
+      co.scan(:sr1)
+      co.scan(:cf1)
+      co.total.should == 19.34
+    end
   end
 
 end
